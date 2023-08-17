@@ -1,0 +1,32 @@
+﻿@model IEnumerable<JobPost>
+@{
+    ViewData["Title"] = "ReviewPosts";
+}
+
+<h1>ReviewPosts</h1>
+
+
+<table id="tblData1" class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Job Title</th>
+            <th>Department</th>
+            <th>FT/PT</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Created By</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+
+</table>
+
+<div>
+    <a asp-controller="Approver" asp-action="Index" class="btn btn-secondary">Back</a>
+</div>
+
+@section Scripts{
+    <script src="~/js/JobPostApprover1.js" asp-append-version="true"></script>
+}
+
