@@ -1,0 +1,43 @@
+﻿@model Experience
+@{
+    ViewData["Title"] = "Experience";
+}
+
+<h3>Please enter your Work Experience</h3>
+<form>
+    
+    <input type="text" asp-for="Id" hidden class="form-control form-control-lg" />
+    <div class="form-group row">
+        <label asp-for="EmployerName" class="col-sm-2 col-form-label">Employer Name</label>
+        <div class="col pb-2">
+            <input type="text" asp-for="EmployerName"  />
+        </div>
+    </div>
+    <div class="from-group row">
+        <label asp-for="StartDate" class="col-sm-2 col-form-label">Start Date</label>
+        <div class="col pb-2">
+            <input asp-for="StartDate" type="month" />
+        </div>
+    </div>
+    <div class="from-group row">
+        <label asp-for="EndDate" class="col-sm-2 col-form-label">End Date</label>
+        <div class="col pb-2">
+            <input asp-for="EndDate" type="month" />
+        </div>
+    </div>
+    <div class="from-group row">
+
+        <label asp-for="JobTitle" class="col-sm-2 col-form-label">Job title</label>
+        <div class="col pb-2">
+            <input type="text" asp-for="JobTitle"  />
+        </div>
+    </div>
+    <div class="from-group row">
+
+        <label asp-for="TasksAndResponsilities" class="col-sm-2 col-form-label">Tasks and Responsibilies</label>
+        <div class="col pb-2">
+            <textarea asp-for="TasksAndResponsilities" rows="3"></textarea>
+        </div>
+    </div>
+    <button asp-controller="Student" type="submit" class="btn btn-success" asp-action="UpdateExperience" style="width:150px"><i class="bi bi-save"></i></button>
+</form>

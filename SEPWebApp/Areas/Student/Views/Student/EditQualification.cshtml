@@ -1,0 +1,88 @@
+﻿@model Qualifications
+@{
+    ViewData["Title"] = "AddQualifications";
+}
+<h4>Please enter your Qualification</h4>
+<form>
+    <input asp-for="Id" hidden />
+    <div class="form-group row">
+
+
+        <label asp-for="Institution" class="col-sm-2 col-form-label">Institution</label>
+
+
+        <div class="col pb-2">
+
+            <input type="text" asp-for="Institution" />
+
+        </div>
+    </div>
+
+    <div class="form-group row">
+
+        <label asp-for="StartDate" class="col-sm-2 col-form-label">Start Date</label>
+
+        <div class="col-6">
+            <input asp-for="StartDate" type="month" />
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+
+        <label asp-for="EndDate" class="col-sm-2 col-form-label">End Date</label>
+
+        <div class="col-6">
+            <input asp-for="EndDate" type="month" />
+        </div>
+    </div>
+    <div class="form-group row">
+
+        <label asp-for="Qalificatiion" class="col-sm-2 col-form-label">Qualifition</label>
+        <div class="col pb-2">
+
+            <input type="text" asp-for="Qalificatiion" />
+
+        </div>
+    </div>
+    <div class="form-group row">
+
+        <label asp-for="Subjects" class="col-sm-2 col-form-label">Subjects</label>
+
+
+        <div class="col pb-2">
+            <textarea asp-for="Subjects" rows="3"></textarea>
+        </div>
+    </div>
+    <div class="form-group row">
+
+        <label asp-for="Majors" class="col-sm-2 col-form-label">Majors</label>
+
+
+        <div class="col pb-2">
+            <textarea asp-for="Majors" rows="3"></textarea>
+        </div>
+    </div>
+    <div class="form-group row">
+
+        <label asp-for="SubMajors" class="col-sm-2 col-form-label">Sub-majors</label>
+
+
+        <div class="col pb-2">
+            <textarea asp-for="SubMajors" rows="3"></textarea>
+        </div>
+    </div>
+    <div class="form-group row">
+
+
+        <label asp-for="Research" class="col-sm-2 col-form-label">Research</label>
+
+
+        <div class="col pb-2">
+
+            <input type="text" asp-for="Research" />
+
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success" asp-controller="Student" asp-action="UpdateQualification" style="width:150px"><i class="bi bi-save"></i></button>
+</form>

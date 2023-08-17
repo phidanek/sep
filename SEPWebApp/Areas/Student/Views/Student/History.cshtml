@@ -1,0 +1,45 @@
+﻿@model IEnumerable<JobPost>
+@{
+    ViewData["Title"] = "Index";
+}
+<div>
+    <table id="tblData" class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    Job Title
+                </th>
+                <th>
+                    Department
+                </th>
+                <th>
+                    Number Of hours
+                </th>
+                <th>
+                    Start Date
+                </th>
+                <th>
+                    End Date
+                </th>
+                <th>
+                    Outcome
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+    </table>
+
+    <a asp-area="Student" asp-action="Index" class="btn btn-secondary" style="width:150px">Back</a>
+</div>
+
+
+@section Scripts{
+    <script src="~/js/StudentsHistory.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
+
+}
+
+

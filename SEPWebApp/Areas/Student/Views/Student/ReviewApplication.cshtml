@@ -1,0 +1,51 @@
+﻿@model StudentApplication
+<div>
+    <div class="col pb-2">
+        <label>Status</label>
+        <b>@Model.applicationStatus.Name</b>
+    </div>
+    <div class="col pb-2">
+        <label>Job Title :</label> 
+        <input disabled asp-for="@Model.jobPost.JobTitle" />
+    </div>
+    <div class="col pb-2">
+        <label>Location : </label>
+        <input disabled asp-for="@Model.jobPost.Location" />
+    </div>
+    <div class="col pb-2">
+        <label>Description of job : </label>
+        <input disabled asp-for="@Model.jobPost.JobDescription" />
+    </div>
+        <div class="col pb-2">
+        <label>Key responsiblities : </label>
+        <input disabled asp-for="@Model.jobPost.KeyResponsibilities" />
+    </div>
+    <div class="col pb-2">
+        <label>Fulltime or Part-time : </label>
+        <input disabled asp-for="@Model.jobPost.JobType.Name" />
+    </div>
+    <div class="col pb-2">
+        <label>Number of hours in a week : </label>
+        <input disabled asp-for="@Model.jobPost.WeekHour.Name" />
+    </div>
+    <div class="col pb-2">
+        <label>Rate</label>
+        <input disabled asp-for="@Model.jobPost.HourlyRate" />
+    </div>
+    <div class="col pb-2">
+        <p>Start date : @Model.jobPost.StartDate.ToString("D")</p>
+    </div>
+    <div class="col pb-2">
+        <p>End date : @Model.jobPost.EndDate.ToString("D")</p>
+    </div>
+    <div class="col pb-2">
+        <label>Minimum Requirements</label>
+        <input asp-for="@Model.jobPost.MinimumRequirements" disabled/>
+    </div>
+    <div class="col pb-2">
+        <label >Application instruction</label>
+        <input asp-for="@Model.jobPost.ApplicationInstruction" disabled/>
+    </div>
+    <a asp-area="Student" asp-action="History" class="btn btn-secondary" style="width:150px">Back</a>
+
+</div>

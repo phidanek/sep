@@ -1,0 +1,434 @@
+﻿@model SEP.Models.ViewModels.JobPostVM
+
+
+<form method="post" asp-action="Upsert" style="margin-left:25%">
+    <input asp-for="JobPost.Id" hidden />
+    <input asp-for="JobPost.ApplicationUserId" hidden />
+    <div class="p-3 mt-2">
+        <div class="row pb-2">
+            <h2 class="text-primary">Employer → @(Model.JobPost.Id != 0 ? "Update" : "Create") Post</h2>
+        </div>
+
+        <div class="mb-3 form-group row">
+            <div>
+                @foreach (var emoloyerType in Model.JobPost.EmoloyerTypes)
+                {
+                    <input type="radio" asp-for="JobPost.EmoloyerType" value="@emoloyerType" />
+
+                    @emoloyerType
+                }
+                <br />
+                <span asp-validation-for="JobPost.EmoloyerType" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mb-3 form-group row">
+            <div class="col-7">
+                <select asp-for="JobPost.FacultyId" id="faculty" class="form-select">
+                    <option disabled selected>Select Faculty</option>
+                    @foreach (var fac in Model.FacultyList)
+                    {
+                        <option value="@fac.Id">@fac.Name</option>
+                    }
+                    @*<option disabled selected>Select Faculty</option>*@
+                </select>
+                <br />
+                <span asp-validation-for="JobPost.FacultyId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mb-3 form-group row">
+            <div class="col-7">
+                <select asp-for="JobPost.DepartmentId" id="department" class="form-select">
+                    <option disabled selected>Select Department</option>
+                    @foreach (var dep in Model.DepartmentList)
+                    {
+                        <option value="@dep.Id">@dep.Name</option>
+                    }
+                    @*<option disabled selected>Select Department</option>*@
+                </select>
+                <br />
+                <span asp-validation-for="JobPost.DepartmentId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mb-3 form-group row">
+            <label asp-for="JobPost.JobTitle" class="col-2"></label>
+            <div class="col-5">
+                <input asp-for="JobPost.JobTitle" class="form-control">
+                <span asp-validation-for="JobPost.JobTitle" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mb-3 form-group row">
+            <label asp-for="JobPost.Location" class="col-2"></label>
+            <div class="col-5">
+                <input asp-for="JobPost.Location" class="form-control">
+                <span asp-validation-for="JobPost.Location" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mb-3 form-group row">
+            <label asp-for="JobPost.JobDescription" class="col-2"></label>
+            <div class="col-5">
+                <input asp-for="JobPost.JobDescription" class="form-control">
+                <span asp-validation-for="JobPost.JobDescription" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mb-3 form-group row">
+            <label asp-for="JobPost.KeyResponsibilities" class="col-2"></label>
+            <div class="col-5">
+                <input asp-for="JobPost.KeyResponsibilities" class="form-control">
+                <span asp-validation-for="JobPost.KeyResponsibilities" class="text-danger"></span>
+            </div>
+        </div>
+
+
+        <div class="mb-3 form-group row">
+            <div class="col-7">
+                <select asp-for="JobPost.JobTypeId" id="jobtype" class="form-select">
+                    <option disabled selected>Select Job Type</option>
+                    @foreach (var job in Model.JobTypeList)
+                    {
+                        <option value="@job.Id">@job.Name</option>
+                    }
+                </select>
+                <br />
+                <span asp-validation-for="JobPost.JobTypeId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mb-3 form-group row">
+            <div class="col-7">
+                <select asp-for="JobPost.WeekHourId" class="form-select" id="weekhour">
+                    <option disabled selected>Range</option>
+                    @foreach (var week in Model.WeekHourList)
+                    {
+                        <option value="@week.Id">@week.Name</option>
+                    }
+                </select>
+                <br />
+                <span asp-validation-for="JobPost.WeekHourId" class="text-danger"></span>
+            </div>
+        </div>
+
+@*        <div class="mb-3 form-group row">
+            <label asp-for="JobPost.StartDate" class="col-2 control-label"></label>
+            <div class="col-5">
+                <input asp-for="JobPost.StartDate" type="text" class="datepicker form-control" />
+                <span asp-validation-for="JobPost.StartDate" class="text-danger"></span>
+            </div>
+        </div>*@
+        <div class="mb-3 form-group row">
+            <label asp-for="JobPost.StartDate" class="col-2 control-label"></label>
+            <div class="col-5">
+                <input asp-for="JobPost.StartDate" class="datepicker"/>
+                <span asp-validation-for="JobPost.StartDate" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mb-3 form-group row">
+            <label asp-for="JobPost.EndDate" class="col-2 control-label"></label>
+            <div class="col-5">
+                <input asp-for="JobPost.EndDate" class="datepicker" />
+                <span asp-validation-for="JobPost.EndDate" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mb-3 form-group row">
+            <label asp-for="JobPost.HourlyRate" class="col-2"></label>
+            <div class="col-5">
+                <input asp-for="JobPost.HourlyRate" class="form-control">
+                <span asp-validation-for="JobPost.HourlyRate" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mb-3 form-group row">
+            <div>
+                <label>Limited to:</label>
+                <br />
+                <input type="checkbox" asp-for="JobPost.FirstYear" /><label class="col-2">Year 1</label>
+                <input type="checkbox" asp-for="JobPost.SecondYear" /><label class="col-2">Year 2</label>
+                <input type="checkbox" asp-for="JobPost.ThirdYear" /><label class="col-2">Year 3</label>
+                <br />
+                <input type="checkbox" asp-for="JobPost.Honours" /><label class="col-2">Honours</label>
+                <input type="checkbox" asp-for="JobPost.Graduates" /><label class="col-2">Graduates</label>
+                <input type="checkbox" asp-for="JobPost.Masters" /><label class="col-2">Master's</label>
+                <br />
+                <input type="checkbox" asp-for="JobPost.PhD" /><label class="col-2">PhD</label>
+                <input type="checkbox" asp-for="JobPost.Postdoc" /><label class="col-2">Postdoc</label>
+@*                <input type="checkbox" asp-for="JobPost.FacultyCheck" /><label class="col-2">Faculty</label>
+                <input type="checkbox" asp-for="JobPost.DepartmentCheck" /><label class="col-2">Department</label>*@
+                <br />
+                @*                <span asp-validation-for="JobPost.FirstYear" class="text-danger"></span>*@
+            </div>
+        </div>
+
+        @*        <div class="mb-3 form-group row">
+        <label asp-for="YearOfStudy" class="col-2"></label>
+        <div>
+        @foreach (var item in Html.GetEnumSelectList<YearOfStudy>())
+        {
+        <label class="radio-inline col-4">
+        <input type="radio" asp-for="YearOfStudy" value="@item.Value" />@item.Text
+        </label>
+        }
+        <br />
+        <span asp-validation-for="YearOfStudy" class="text-danger"></span>
+        </div>
+        </div>*@
+
+        @*        <div class="mb-3 form-group row">
+        <div>
+        @foreach (var YOS in Model.JobPost.YearOfStudys)
+        {
+        <input type="checkbox" asp-for="JobPost.YearOfStudy" value="@YOS" />
+
+        @YOS
+        }
+        <br />
+        <span asp-validation-for="JobPost.YearOfStudy" class="text-danger"></span>
+        </div>
+        </div>*@
+
+        <div class="mb-3 form-group row">
+            <label class="col-2">Limited to:</label>
+            <div>
+                @foreach (var openTo in Model.JobPost.OpenTos)
+                {
+                    <input type="radio" asp-for="JobPost.OpenTo" value="@openTo" />
+
+                    @openTo
+
+                    <br />
+                }
+                <br />
+                <span asp-validation-for="JobPost.OpenTo" class="text-danger"></span>
+            </div>
+        </div>
+
+
+        <div class="mb-3 form-group row">
+            <label asp-for="JobPost.MinimumRequirements" class="col-2"></label>
+            <div class="col-5">
+                <input asp-for="JobPost.MinimumRequirements" class="form-control">
+                <span asp-validation-for="JobPost.MinimumRequirements" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mb-3 form-group row">
+            <label asp-for="JobPost.ApplicationInstruction" class="col-2"></label>
+            <div class="col-5">
+                <input asp-for="JobPost.ApplicationInstruction" class="form-control">
+                <span asp-validation-for="JobPost.ApplicationInstruction" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mb-3 form-group row">
+            <label asp-for="JobPost.ClosingDate" class="col-2 control-label"></label>
+            <div class="col-5">
+                <input asp-for="JobPost.ClosingDate" class="datepicker" />
+                <span asp-validation-for="JobPost.ClosingDate" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mb-3 form-group row">
+            <label asp-for="JobPost.ContactPerson" class="col-2"></label>
+            <div class="col-5">
+                <input asp-for="JobPost.ContactPerson" class="form-control">
+                <span asp-validation-for="JobPost.ContactPerson" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mb-3 form-group row">
+            <label asp-for="JobPost.Email" class="col-2"></label>
+            <div class="col-5">
+                <input asp-for="JobPost.Email" class="form-control">
+                <span asp-validation-for="JobPost.Email" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mb-3 form-group row">
+            <label asp-for="JobPost.ContactNo" class="col-2"></label>
+            <div class="col-5">
+                <input asp-for="JobPost.ContactNo" class="form-control">
+                <span asp-validation-for="JobPost.ContactNo" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mb-3 form-group row">
+            <label asp-for="JobPost.ReviewerComment" class="col-2"></label>
+            <div class="col-5">
+                <input asp-for="JobPost.ReviewerComment" class="form-control" readonly="readonly">
+                <span asp-validation-for="JobPost.ReviewerComment" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mb-3 form-group row">
+            <label asp-for="JobPost.StatusId" class="col-2" hidden></label>
+            <div class="col-5">
+                <select asp-for="JobPost.StatusId" asp-items=@Model.StatusList class="form-select" hidden>
+                </select>
+                <br />
+                <span asp-validation-for="JobPost.StatusId" class="text-danger"></span>
+            </div>
+
+        </div>
+
+
+        @if (Model.JobPost.Id != 0)
+        {
+            <button type="submit" class="btn btn-primary" style="width:150px">Update</button>
+        }
+        else
+        {
+            <button type="submit" onclick="return ValidateInput()" class="btn btn-primary" style="width:150px">Create</button>
+        }
+        <a asp-controller="JobPost" asp-action="Index" class="btn btn-secondary" style="width:150px">Back</a>
+    </div>
+
+
+</form>
+
+@section Scripts
+    {
+@*    <script>
+        $(function () {
+            $('.datepicker').datepicker();
+        });
+    </script>*@
+    <script>
+        $(document).ready(function () {
+
+            $('#faculty').change(function () {
+                var obid = this.value;
+                $('#department').empty();
+                $.ajax({
+                    type: 'Get',
+                    url: '@Url.Action("getdepartments","JobPost")',
+                    datatype: 'json',
+                    data: { id: obid },
+                    success: function (dep) {
+                        $.each(dep, function (index, item) {
+                            $('#department').append('<option value="' + item.id + '">' + item.name + '</option')
+                        });
+                    }
+                });
+            });
+        })
+    </script>
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <script>
+        $(function () {
+            // Get the current date
+            var currentDate = new Date();
+
+            // Set the date format for display
+            $("#datepicker").datepicker({
+                dateFormat: "yy-mm-dd",
+                // Set the default date to the current date
+                defaultDate: currentDate,
+                // Only allow selection of dates in the future
+                minDate: currentDate
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function (){
+            //$('#weekhour').attr('disabled', true);
+            $('#jobtype').change(function () {
+                var obid = this.value;
+                $('#weekhour').empty();
+                //$('#weekhour').append('<option disabled selected>Range</option>');
+                $.ajax({
+                    type: 'Get',
+                    url: '@Url.Action("getweekhour","JobPost")',
+                    datatype: 'json',
+                    data: { id: obid },
+                    success: function (week) {
+
+                        if (week != 2) {
+                            $('#weekhour').attr('disabled', false);
+                            $.each(week, function (index, item) {
+                                $('#weekhour').append('<option value="' + item.id + '">' + item.name + '</option')
+                            });
+                        }
+                        else {
+                            $('#weekhour').attr('disabled', true);
+                            $('#weekhour').append('<option disabled selected></option>');
+                            //$.each(week, function (index, item) {
+                            //    $('#weekhour').append('<option value="' + item.id + '">' + item.name + '</option')
+                            //});
+                        }
+                    }
+                });
+            });
+        })
+    </script>
+    }
+
+@*    <script>
+        $(document).ready(function () {
+
+            $('#jobtype').change(function () {
+                var obid = this.value;
+                
+                if (obid == "2")
+                {
+                    $('#weekhour').hide();
+                    //$('#weekhour').attr('disabled', true);
+                }
+                else{
+                    $('#weekhour').show();
+                    //$('#weekhour').empty();
+                    //$.ajax({
+                    //    type: 'Get',
+                    //    url: '@Url.Action("getweekhour","JobPost")',
+                    //    datatype: 'json',
+                    //    data: { id: obid },
+                    //    success: function (week) {
+                    //        alert("hello")
+                    //        $('#weekHourselect').show();
+                    //        $.each(week, function (index, item) {
+                    //            $('#weekHourselect').append('<option value="' + item.id + '">' + item.name + '</option')
+                    //        });
+                    //    },
+                    //});
+                }
+                //$('#weekhour').attr('hidden', true);
+                //$.ajax({
+                //    type: 'Get',
+                //    url: '@Url.Action("getweekhour","JobPost")',
+                //    datatype: 'json',
+                //    data: { id: obid },
+                //    success: function (week) {
+
+                //        if (week != 1) {
+                //            $('#weekhour').attr('disabled', false);
+                //            $.each(week, function (index, item) {
+                //                $('#weekhour').append('<option value="' + item.id + '">' + item.name + '</option')
+                //            });
+                //        }
+                //        else {
+                //            $('#weekhour').attr('hidden', true);
+                //            $.each(week, function (index, item) {
+                //                $('#weekhour').append('<option value="' + item.id + '">' + item.name + '</option')
+                //            });
+                //        }
+                //    },
+                //});
+            });
+        })
+    </script> *@
+
+
+
+
+@*<script src="~/lib//jquery/dist/jquery.min.js"></script>
+<script src="~/js/CascadingJobtype.js"></script>*@
+

@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Employer -> Home</h2>
+<div style="text-align: center; border: 1px solid">
+    <h3>Welcome Recruiter</h3>
+    <br />
+    
+    <a asp-controller="JobPost" asp-action="Index" class="btn btn-primary" style="width:150px">Manage Posts</a>
+    <a asp-controller="Employer" asp-action="Upsert" class="btn btn-primary" style="width:150px">Edit Profile</a>
+
+</div>
+

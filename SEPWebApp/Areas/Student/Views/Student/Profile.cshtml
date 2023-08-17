@@ -1,0 +1,335 @@
+﻿@model SEP.Models.ViewModels.StudentVM
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<form method="post">
+
+    <h3>Personal details</h3>
+
+    <div class="from-group row">
+        <label asp-for="Title" class="col-sm-2 col-form-label">Title</label>
+        <div class="col pb-2">
+            <input type="text" asp-for="Title" disabled />
+        </div>
+    </div>
+
+    <div class="from-group row">
+
+        <label asp-for="FirstName" class="col-sm-2 col-form-label">First Name</label>
+
+
+        <div class="col pb-2">
+
+            <input type="text" asp-for="FirstName" disabled />
+
+        </div>
+    </div>
+
+    <div class="from-group row">
+
+
+        <label asp-for="LastName" class="col-sm-2 col-form-label">Last Name</label>
+
+        <div class="col pb-2">
+
+            <input type="text" asp-for="LastName" disabled />
+
+        </div>
+    </div>
+
+    <div class="from-group row">
+
+
+        <label asp-for="Address" class="col-sm-2 col-form-label">Address</label>
+
+
+        <div class="col pb-2">
+
+            <input type="text" asp-for="Address" />
+
+        </div>
+    </div>
+
+    <div class="from-group row">
+
+        <label asp-for="Telephone" class="col-sm-2 col-form-label">Tell(optional)</label>
+
+
+        <div class="col pb-2">
+
+            <input type="tel" asp-for="Telephone" />
+
+        </div>
+    </div>
+
+    <div class="from-group row">
+
+
+        <label asp-for="cellPhone" class="col-sm-2 col-form-label">Cell</label>
+
+        <div class="col pb-2">
+
+            <input type="tel" asp-for="cellPhone" />
+
+        </div>
+    </div>
+
+
+    <div class="from-group row">
+
+
+        <label asp-for="Email" class="col-sm-2 col-form-label">Email</label>
+
+        <div class="col pb-2">
+
+            <input type="email" asp-for="Email" disabled />
+
+        </div>
+    </div>
+
+    <div class="from-group row">
+
+        <label asp-for="IdNo" class="col-sm-2 col-form-label">ID/Passport No (optinal)</label>
+
+        <div class="col pb-2">
+
+            <input type="text" asp-for="IdNo" />
+
+        </div>
+    </div>
+
+    <div class="from-group row">
+
+        <label asp-for="DriversLicense" class="col-sm-2 col-form-label">Drivers License</label>
+
+        <div class="col pb-2">
+
+            <select id="DriversLicenseDropdown" asp-for="DriversLicense" asp-items="@Model.DriverLicenceList">
+                <option disabled selected>Select Drivers license</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="from-group row">
+
+
+        <label asp-for="CareerObjective" class="col-sm-2 col-form-label">Career Objective</label>
+
+        <div class="col pb-2">
+
+            <textarea asp-for="CareerObjective" rows="3"></textarea>
+
+        </div>
+    </div>
+
+    <div class="from-group row">
+
+
+        <label asp-for="Gender" class="col-sm-2 col-form-label">Gender</label>
+
+
+        <div class="col pb-2">
+
+            <select id="GenderDropdown" asp-for="Gender" asp-items="@Model.GenderList">
+                <option disabled selected>Select Gender</option>
+            </select>
+
+        </div>
+    </div>
+
+
+    <div class="from-group row">
+
+
+        <label asp-for="Race" class="col-sm-2 col-form-label">Race</label>
+
+
+
+        <div class="col pb-2">
+            <select id="RaceDropdown" asp-for="Race" asp-items="@Model.RaceList">
+                <option disabled selected>Select Race</option>
+            </select>
+
+        </div>
+    </div>
+
+
+    <div class="from-group row">
+
+
+        <label asp-for="Nationality" class="col-sm-2 col-form-label">Nationality</label>
+
+
+
+        <div class="col pb-2">
+
+            <select id="NationalityDropdown" asp-for="Nationality" asp-items="@Model.NationalityList">
+                <option disabled selected>Select Nationality</option>
+            </select>
+
+
+        </div>
+    </div>
+
+    <div class="from-group row">
+
+
+        <label asp-for="YearOfStudy" class="col-sm-2 col-form-label">Year of study</label>
+
+
+
+        <div class="col pb-2">
+            <select id="YOSDropdown" asp-for="YearOfStudy" asp-items="@Model.YearOfStudyList">
+                <option disabled selected>Select  Year of study</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="from-group row">
+
+
+        <label asp-for="Faculty" class="col-sm-2 col-form-label">Faculty</label>
+
+
+
+        <div class="col pb-2">
+            <select id="facultyDropdown" asp-for="Faculty">
+                <option disabled selected>Select Faculty</option>
+                @foreach (var fac in Model.FacutyList)
+                {
+                    <option value="@fac.Id">@fac.Name</option>
+                }
+                @*<option disabled selected>Select Faculty</option>*@
+            </select>
+
+        </div>
+    </div>
+
+    <div class="from-group row">
+
+
+        <label asp-for="Department" class="col-sm-2 col-form-label">Department</label>
+
+
+        <div class="col pb-2">
+            <select id="departmentDropdown" asp-for="Department">
+                <option disabled selected>Select Department</option>
+                @foreach (var dep in Model.DepartmentList)
+                {
+                    <option value="@dep.Id">@dep.Name</option>
+                }
+            </select>
+
+        </div>
+    </div>
+
+    <div class="from-group row">
+
+
+        <label asp-for="Skills" class="col-sm-2 col-form-label">Skills</label>
+
+        <div class="col pb-2">
+
+            <textarea asp-for="Skills" rows="3"></textarea>
+
+        </div>
+    </div>
+
+    <div class="from-group row">
+
+
+        <label asp-for="Achivements" class="col-sm-2 col-form-label">Achivements</label>
+
+        <div class="col pb-2">
+            <textarea asp-for="Achivements" rows="3"></textarea>
+        </div>
+    </div>
+
+    <div class="from-group row">
+        <label asp-for="Interests" class="col-sm-2 col-form-label">Interests</label>
+        <div class="col pb-2">
+
+            <textarea asp-for="Interests" rows="3"></textarea>
+
+        </div>
+    </div>
+
+    <h3>Education</h3>
+    <a asp-area="Student" asp-action="Education" class="btn btn-success" style="width: 150px;"> <i class="bi bi-plus-circle"></i></a>
+    @foreach (var Education in Model.Qualification)
+    {
+        <div class="from-group row">
+            <label class="col-sm-2 col-form-label">@Education.Qalificatiion</label>
+            <div class="col pb-2">
+        <a asp-controller="Student" asp-action="EditQualification" asp-route-id="@Education.Id" class="btn btn-primary" style="width:100px"> <i class="bi bi-pencil"></i></a>
+        <a asp-controller="Student" asp-action="DeleteQualification" asp-route-id="@Education.Id" class="btn btn-danger" style="width:100px"><i class="bi bi-trash"></i></a>
+            </div>
+        </div>
+    }
+
+    <br />
+
+    <h3>Work Experience</h3>
+
+    <a asp-area="Student" asp-action="Employment" class="btn btn-success" style="width:150px"><i class="bi bi-plus-circle"></i></a>
+
+    @foreach (var Experience in Model.Experience)
+    {
+
+        <div class="from-group row">
+            <label class="col-sm-2 col-form-label">@Experience.JobTitle</label>
+            <div class="col pb-2">
+                <a asp-controller="Student" asp-action="EditExperience" asp-route-id="@Experience.Id" class="btn btn-primary" style="width:100px"> <i class="bi bi-pencil"></i></a>
+                <a asp-controller="Student" asp-action="DeleteExperience" asp-route-id="@Experience.Id" class="btn btn-danger" style="width:100px"><i class="bi bi-trash"></i></a>
+            </div>
+        </div>
+    }
+    <br />
+
+    <h3>Referees</h3>
+
+    <a asp-area="Student" asp-action="Referees" class="btn btn-success" style="width:150px"><i class="bi bi-plus-circle"></i></a>
+    @foreach (var referee in Model.Referees)
+    {
+        <div class="from-group row">
+            <label class="col-sm-2 col-form-label">@referee.JobTitle</label>
+            <div class="col pb-2">
+                <a asp-controller="Student" asp-action="EditReferees" asp-route-id="@referee.Id" class="btn btn-primary" style="width:100px"> <i class="bi bi-pencil"></i></a>
+                <a asp-controller="Student" asp-action="DeleteReferees" asp-route-id="@referee.Id" class="btn btn-danger" style="width:100px"><i class="bi bi-trash"></i></a>
+            </div>
+        </div>
+    }
+
+    <br/>
+    <br/>
+    <button type="submit" class="btn btn-success" asp-action="UpdateProfile" style="width:150px"><i class="bi bi-save"></i></button>
+</form>
+
+@section Scripts
+    {
+    <script>
+        $(document).ready(function () {
+
+            $('#facultyDropdown').change(function () {
+                var obid = this.value;
+                $('#departmentDropdown').empty();
+                $.ajax({
+                    type: 'Get',
+                    url: '@Url.Action("getdepartments","Student")',
+                    datatype: 'json',
+                    data: { id: obid },
+                    success: function (dep) {
+                        $.each(dep, function (index, item) {
+                            $('#departmentDropdown').append('<option value="' + item.id + '">' + item.name + '</option')
+                        });
+                    }
+                });
+            });
+        })
+    </script>
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
